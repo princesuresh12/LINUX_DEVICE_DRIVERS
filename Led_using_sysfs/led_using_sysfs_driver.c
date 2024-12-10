@@ -13,7 +13,7 @@ MODULE_AUTHOR("TechDhaba");     // Author of the module
 MODULE_DESCRIPTION("Sysfs example for controlling GPIO");  // Short description of what the module does
 MODULE_VERSION("1.0");          // Module version, useful for versioning of kernel modules
 
-#define LED_GPIO 17  // GPIO pin for the LED
+#define LED_GPIO 529  // GPIO pin for the LED corresponding 17 th pin
 
 // Sysfs attributes
 static struct kobject *example_kobject;  // Pointer to kobject representing our sysfs entry
