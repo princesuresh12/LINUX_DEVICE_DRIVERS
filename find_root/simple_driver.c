@@ -1,6 +1,7 @@
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/fs.h>
+#include<linux/math64.h>// For kernel math function
 #include <linux/uaccess.h> // For copy_to_user and copy_from_user
 
 #define DEVICE_NAME "simple_device"
@@ -23,15 +24,8 @@ static struct file_operations fops = {
     .read = device_read,
     .write = device_write,
 };
-
-/*
- *
- *
- *
- */
-
-
-static void operation_double(void)
+// Root operation is done here 
+static void operation_root(void)
 {
 	char *buff = device_buffer;
 	int value=0;
@@ -44,7 +38,7 @@ static void operation_double(void)
 		}
 		buff++;
 	}
-        value = value*2;
+        value = sqrt(root);
 	sprintf(device_buffer,"%d",value);
 }
 
@@ -94,7 +88,7 @@ static ssize_t device_write(struct file *file, const char __user *user_buffer, s
     printk(KERN_INFO "simple_device: Received %zu bytes from the user\n", size);
 
    /* calling the operation */
-    operation_double();
+    operation_root();
 
     return size;
 }
@@ -120,5 +114,5 @@ module_init(simple_driver_init);
 module_exit(simple_driver_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Your Name");
+MODULE_AUTHOR("prince");
 MODULE_DESCRIPTION("A Simple Linux Device Driver");
